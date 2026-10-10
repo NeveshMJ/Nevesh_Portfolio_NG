@@ -1,0 +1,33 @@
+.row { position: relative; margin-bottom: clamp(0px, 1vw, 12px); }
+.row-head { width: 100%; display: flex; align-items: baseline; gap: 14px; position: relative; z-index: 2; }
+.row-title { font-size: clamp(1.15rem, 1.5vw, 1.5rem); font-weight: 700; letter-spacing: .01em; }
+.row-kicker { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.row-hint { margin-left: 4px; font-size: .78rem; font-weight: 600; color: var(--red-bright); display: inline-flex; align-items: center; gap: 2px; opacity: 0; transform: translateX(-8px); transition: opacity var(--dur), transform var(--dur) var(--ease); }
+.row:hover .row-hint { opacity: 1; transform: none; }
+.row-hint svg { width: 14px; height: 14px; }
+
+.row-body { position: relative; }
+/* generous vertical padding is the "room" scaled cards grow into, so overflow-x scrolling never clips them */
+.row-track {
+  display: flex; gap: var(--row-gap);
+  overflow-x: auto; overflow-y: hidden;
+  padding: 44px var(--gutter) 150px; margin: -34px 0 -120px;
+  scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter);
+  scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+}
+.row-track::-webkit-scrollbar { display: none; }
+.row-track:focus { outline: none; }
+
+.row-arrow {
+  position: absolute; top: 44px; z-index: 30; height: calc(var(--card-w) * 9 / 16);
+  width: clamp(36px, var(--gutter), 60px); display: grid; place-items: center;
+  color: #fff; opacity: 0; transition: opacity var(--dur), background var(--dur);
+}
+.row-arrow--l { left: 0; background: linear-gradient(to right, rgba(7,7,10,.92), transparent); }
+.row-arrow--r { right: 0; background: linear-gradient(to left, rgba(7,7,10,.92), transparent); }
+.row-arrow svg { width: 32px; height: 32px; transition: transform var(--dur-fast) var(--ease); filter: drop-shadow(0 2px 6px #000); }
+.row-arrow:hover svg { transform: scale(1.35); }
+.row-arrow:disabled { visibility: hidden; }
+.row:hover .row-arrow:not(:disabled), .row-arrow:focus-visible { opacity: 1; }
+@media (hover: none), (max-width: 760px) { .row-arrow { display: none; } .row-hint { display: none; } }
+@media (max-width: 640px) { .row-kicker { display: none; } }

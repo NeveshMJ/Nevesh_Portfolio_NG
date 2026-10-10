@@ -1,0 +1,12 @@
+.cover { position: absolute; inset: 0; overflow: hidden; background: #0a0a10; }
+.cover svg { width: 100%; height: 100%; }
+.cover-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.cover-tint { position: absolute; inset: 0; background: linear-gradient(135deg, color-mix(in srgb, var(--c1) 22%, transparent), transparent 55%); mix-blend-mode: soft-light; pointer-events: none; }
+.cover-shot.is-framed { padding-top: 22px; background: #14141b; }
+.cover-shot.is-framed img { height: calc(100% - 0px); }
+.cover-chrome { position: absolute; top: 0; left: 0; right: 0; height: 22px; background: #1d1d29; display: flex; align-items: center; gap: 5px; padding-left: 9px; border-bottom: 1px solid var(--line); z-index: 2; }
+.cover-chrome i { width: 7px; height: 7px; border-radius: 50%; background: #ffffff33; }
+.cover-chrome i:first-child { background: #ff5f57aa; } .cover-chrome i:nth-child(2) { background: #febc2eaa; } .cover-chrome i:nth-child(3) { background: #28c840aa; }
+
+/* tiny technical captions only make sense on large art — hide them inside cards so titles stay clean */
+.pcard .art-label { display: none; }

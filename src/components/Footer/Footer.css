@@ -1,0 +1,9 @@
+.footer { border-top: 1px solid var(--line); padding: 40px 0 28px; background: #040406; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
+.footer-brand { display: grid; gap: 8px; }
+.footer-brand p { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.footer-links a { font-size: .86rem; color: var(--text-soft); transition: color var(--dur-fast); }
+.footer-links a:hover { color: #fff; }
+.footer-right { display: flex; gap: 8px; }
+.footer-fine { margin-top: 28px; font-size: .74rem; color: var(--muted); }

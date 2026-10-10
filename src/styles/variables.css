@@ -1,0 +1,75 @@
+/* ============================================================
+   Design tokens — one source of truth for the whole site.
+   ============================================================ */
+:root {
+  /* surfaces */
+  --bg: #07070a;
+  --bg-raised: #0d0d12;
+  --surface: #14141b;
+  --surface-2: #1b1b25;
+  --surface-3: #242431;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  /* text */
+  --text: #f4f1ec; /* warm white */
+  --text-soft: #cfcad3;
+  --muted: #9b97a3;
+
+  /* accents */
+  --red: #b20710; /* deep Netflix red */
+  --red-bright: #e50914; /* Netflix brand red */
+  --red-deep: #831010;
+  --blue: #5b86ff;
+  --violet: #8f6bff;
+  --green: #3ecf8e;
+  --amber: #f5b13d;
+
+  /* type */
+  --font-display: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, 'Inter Display', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --fs-hero: clamp(3.6rem, 10.5vw, 9.5rem);
+  --fs-h1: clamp(2.4rem, 5vw, 4.2rem);
+  --fs-h2: clamp(1.7rem, 3vw, 2.5rem);
+  --fs-body: clamp(0.95rem, 0.9rem + 0.25vw, 1.08rem);
+  --fs-small: 0.82rem;
+
+  /* spacing */
+  --gutter: clamp(18px, 4vw, 64px);
+  --section-y: clamp(64px, 9vw, 132px);
+  --nav-h: 68px;
+
+  /* radii */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* depth */
+  --shadow-card: 0 18px 40px -12px rgba(0, 0, 0, 0.75), 0 2px 0 rgba(255, 255, 255, 0.04) inset;
+  --shadow-pop: 0 40px 90px -20px rgba(0, 0, 0, 0.95), 0 0 0 1px var(--line-strong);
+  --glow-red: 0 0 60px -10px rgba(178, 7, 16, 0.55);
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 700ms;
+
+  /* card geometry (rows) */
+  --card-w: clamp(240px, 24vw, 370px);
+  --poster-w: clamp(150px, 15vw, 230px);
+  --row-gap: 14px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 60px;
+    --card-w: 74vw;
+    --poster-w: 44vw;
+    --row-gap: 10px;
+  }
+}

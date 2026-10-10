@@ -1,0 +1,21 @@
+{
+  "name": "nevesh-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Cinematic, streaming-style developer portfolio for Nevesh Gokul M J",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-icons": "^5.7.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.4",
+    "vite": "^8.2.0"
+  }
+}

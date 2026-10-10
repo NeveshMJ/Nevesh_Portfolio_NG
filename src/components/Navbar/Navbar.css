@@ -1,0 +1,55 @@
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 900; height: var(--nav-h);
+  background: linear-gradient(to bottom, rgba(7,7,10,.92), rgba(7,7,10,0));
+  transition: background var(--dur) var(--ease), box-shadow var(--dur), backdrop-filter var(--dur);
+}
+.nav.is-solid { background: rgba(7,7,10,.94); backdrop-filter: blur(14px) saturate(1.3); box-shadow: 0 1px 0 var(--line), 0 18px 40px -20px #000; }
+.nav-inner { height: var(--nav-h); display: flex; align-items: center; gap: clamp(16px, 3vw, 44px); padding-inline: var(--gutter); max-width: 1680px; margin-inline: auto; }
+.nav-brand { display: inline-flex; flex: none; }
+.nav-links { display: flex; gap: clamp(12px, 1.8vw, 26px); margin-right: auto; }
+.nav-links a { position: relative; font-size: .88rem; font-weight: 500; color: var(--text-soft); padding: 8px 0; transition: color var(--dur-fast); }
+.nav-links a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform var(--dur) var(--ease); }
+.nav-links a:hover, .nav-links a.is-active { color: #fff; }
+.nav-links a.is-active { font-weight: 700; }
+.nav-links a:hover::after, .nav-links a.is-active::after { transform: scaleX(1); }
+
+.nav-right { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.nav-links + .nav-right { margin-left: 0; }
+.nav-social { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; color: var(--text-soft); transition: color var(--dur-fast), background var(--dur-fast); }
+.nav-social:hover { color: #fff; background: rgba(255,255,255,.1); }
+.nav-social svg { width: 18px; height: 18px; }
+
+.nav-profile { position: relative; margin-left: 6px; }
+.nav-profile-btn { display: inline-flex; align-items: center; gap: 9px; padding: 4px 10px 4px 4px; border-radius: 999px; border: 1px solid var(--line); background: rgba(20,20,27,.6); transition: border-color var(--dur-fast), background var(--dur-fast); }
+.nav-profile-btn:hover, .nav-profile-btn[aria-expanded='true'] { border-color: var(--line-strong); background: rgba(255,255,255,.08); }
+.nav-avatar { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; flex: none; background: linear-gradient(145deg, var(--accent), #101018 140%); color: #fff; }
+.nav-avatar svg { width: 16px; height: 16px; }
+.nav-profile-label { font-size: .84rem; font-weight: 600; }
+.caret { width: 0; height: 0; border: 4px solid transparent; border-top-color: var(--text-soft); margin-top: 4px; }
+.nav-menu { position: absolute; right: 0; top: calc(100% + 10px); width: 270px; padding: 8px; background: rgba(14,14,19,.97); border: 1px solid var(--line-strong); border-radius: var(--r-md); box-shadow: var(--shadow-pop); animation: pop-in 200ms var(--ease) both; }
+.nav-menu-item { width: 100%; display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: var(--r-sm); text-align: left; font-weight: 600; font-size: .92rem; }
+.nav-menu-item:hover { background: rgba(255,255,255,.08); }
+.nav-menu-item small { display: block; font-weight: 400; font-size: .74rem; color: var(--muted); }
+.nav-menu-item .tick { margin-left: auto; color: var(--green); width: 18px; height: 18px; }
+.nav-menu-all { border-top: 1px solid var(--line); border-radius: 0 0 var(--r-sm) var(--r-sm); margin-top: 6px; padding-top: 14px; color: var(--text-soft); font-weight: 500; }
+.nav-menu-all svg { width: 18px; height: 18px; }
+
+.nav-burger { display: none; }
+.nav-drawer { display: none; }
+
+@media (max-width: 980px) {
+  .nav-links, .nav-social { display: none; }
+  .nav-right, .nav-links + .nav-right { margin-left: auto; }
+  .nav-burger { display: inline-grid; margin-left: 4px; }
+  .nav-profile-label, .caret { display: none; }
+  /* match the 44px round burger button */
+  .nav-profile-btn { width: 44px; height: 44px; padding: 0; justify-content: center; border-color: var(--line-strong); }
+  .nav-profile-btn .nav-avatar { width: 34px; height: 34px; border-radius: 50%; }
+  .nav-profile-btn .nav-avatar svg { width: 18px; height: 18px; }
+  .nav-drawer { display: block; position: fixed; inset: var(--nav-h) 0 0 0; z-index: 890; background: #07070a; padding: 18px var(--gutter) 40px; overflow-y: auto; animation: fade-in 220ms var(--ease) both; }
+  .nav-drawer[hidden] { display: none; }
+  .nav-drawer li { animation: fade-up 400ms calc(var(--i) * 40ms) var(--ease) both; }
+  .nav-drawer li a { display: block; padding: 14px 4px; font-family: var(--font-display); font-size: 2.3rem; letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--line); color: var(--text-soft); }
+  .nav-drawer li a.is-active { color: var(--red-bright); }
+  .nav-drawer-foot { display: flex; align-items: center; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+}

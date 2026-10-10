@@ -1,0 +1,22 @@
+.resume { background: radial-gradient(55% 60% at 0% 100%, rgba(178, 7, 16,.13), transparent 70%), var(--bg); }
+.resume-grid { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 80px); align-items: center; }
+.resume-copy { display: grid; gap: 18px; justify-items: start; }
+.resume-file { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: var(--r-md); border: 1px solid var(--line-strong); background: var(--surface); }
+.resume-file svg { width: 26px; height: 26px; color: var(--red-bright); flex: none; }
+.resume-file b { display: block; font-size: .92rem; word-break: break-all; } .resume-file small { color: var(--muted); font-size: .76rem; }
+.resume-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.resume-note { display: flex; gap: 8px; align-items: flex-start; font-size: .8rem; color: var(--muted); max-width: 44ch; }
+.resume-note svg { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+
+.resume-screen { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--line-strong); background: var(--surface); box-shadow: var(--shadow-pop), 0 0 80px -30px rgba(178, 7, 16,.5); }
+.resume-chrome { height: 34px; display: flex; align-items: center; gap: 7px; padding-inline: 14px; background: #1d1d29; border-bottom: 1px solid var(--line); }
+.resume-chrome i { width: 10px; height: 10px; border-radius: 50%; background: #ffffff30; }
+.resume-chrome i:first-child { background: #ff5f57; } .resume-chrome i:nth-child(2) { background: #febc2e; } .resume-chrome i:nth-child(3) { background: #28c840; }
+.resume-chrome span { margin-left: 10px; font-family: var(--font-mono); font-size: .7rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.resume-stage { position: relative; height: clamp(520px, 78vh, 860px); background: #2a2a34; }
+.resume-under { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: top center; background: #fff; }
+.resume-pdf { position: absolute; inset: 0; display: block; width: 100%; height: 100%; background: transparent; border: 0; }
+.resume-fallback { display: grid; justify-items: center; gap: 16px; padding: 22px; background: #2a2a34; }
+.resume-fallback img { width: min(100%, 520px); border-radius: 4px; box-shadow: 0 20px 50px -10px #000; background: #fff; }
+
+@media (max-width: 900px) { .resume-grid { grid-template-columns: 1fr; } }

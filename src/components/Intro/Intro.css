@@ -1,0 +1,54 @@
+.intro {
+  position: fixed; inset: 0; z-index: 3000;
+  display: grid; place-items: center; align-content: center; gap: 8px;
+  background: radial-gradient(120% 80% at 50% 50%, #120508 0%, #050507 55%, #000 100%);
+  overflow: hidden; perspective: 1000px; cursor: pointer;
+  transition: opacity 450ms .2s var(--ease-in-out);
+}
+.intro.is-leaving { opacity: 0; pointer-events: none; }
+
+.intro-glow {
+  position: absolute; left: 50%; top: 50%; width: 70vmax; height: 70vmax;
+  translate: -50% -50%;
+  background: radial-gradient(closest-side, rgba(229,9,20,.3), rgba(178,7,16,.06) 55%, transparent 70%);
+  animation: fade-in 1.2s var(--ease) both;
+}
+
+/* the orb flies in from deep space, tumbling into place */
+.intro-orb { position: relative; width: 380px; height: 380px; transform-style: preserve-3d; animation: orb-arrive 1s var(--ease) both; }
+@keyframes orb-arrive {
+  from { opacity: 0; transform: translateZ(-1400px) rotateX(70deg) rotateZ(-40deg); filter: blur(14px); }
+  60%  { opacity: 1; filter: none; }
+  to   { opacity: 1; transform: none; }
+}
+.intro .orb { animation-duration: 5s; }
+.intro .orb-orbit { animation-duration: 4s; }
+.intro .orb-orbit-2 { animation-duration: 6s; }
+
+/* …then warps toward the camera on the way out */
+.intro.is-leaving .intro-orb { animation: orb-warp 650ms cubic-bezier(.7, 0, .84, 0) forwards; }
+@keyframes orb-warp { from { transform: none; } to { transform: translateZ(820px) rotateY(25deg); opacity: 0; filter: blur(10px); } }
+
+.intro-name {
+  position: relative; margin-top: 18px;
+  font-family: var(--font-mono); font-size: clamp(.72rem, 1.6vw, .9rem);
+  letter-spacing: .5em; text-transform: uppercase; color: var(--text-soft);
+  animation: name-in 900ms .55s var(--ease) both;
+}
+@keyframes name-in { from { opacity: 0; letter-spacing: 1.2em; filter: blur(6px); } to { opacity: 1; letter-spacing: .5em; filter: none; } }
+.intro.is-leaving .intro-name { opacity: 0; transition: opacity 250ms; }
+
+.intro-skip {
+  position: absolute; right: var(--gutter); bottom: 28px;
+  font-size: .78rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted); padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px;
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.intro-skip:hover { color: var(--text); border-color: var(--line-strong); }
+
+@media (max-width: 560px) { .intro-orb { scale: .72; margin-block: -40px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-orb, .intro-name, .intro.is-leaving .intro-orb { animation: none; opacity: 1; }
+  .intro .intro-orb * { animation: none; }
+}

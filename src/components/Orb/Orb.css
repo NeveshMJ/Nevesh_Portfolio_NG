@@ -1,0 +1,26 @@
+/* 3D orb: wireframe globe around a glowing core, two tilted orbits and concentric halos. Shared by the hero and the intro. */
+/* concentric halo circles — share the orb's centre so the whole piece reads as one circle */
+.orb-halo { position: absolute; left: 50%; top: 50%; width: 560px; height: 560px; margin: -280px 0 0 -280px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(229,9,20,.22) 0%, rgba(131,16,16,.14) 45%, transparent 70%);
+  border: 1px solid rgba(229,9,20,.22); box-shadow: inset 0 0 90px -10px rgba(229,9,20,.4); animation: halo-pulse 8s ease-in-out infinite; }
+.orb-halo-2 { width: 680px; height: 680px; margin: -340px 0 0 -340px; background: none; box-shadow: none; border: 1px dashed rgba(229,9,20,.2); animation: halo-spin 90s linear infinite; }
+@keyframes halo-pulse { 50% { scale: 1.05; border-color: rgba(229,9,20,.35); } }
+@keyframes halo-spin { to { rotate: 360deg; } }
+.orb-scene { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); transition: transform .7s var(--ease); }
+.orb-core { position: absolute; left: 115px; top: 115px; width: 150px; height: 150px; border-radius: 50%;
+  background: radial-gradient(circle at 34% 28%, #ff8a8f 0%, #e50914 30%, #831010 62%, #1a0306 100%);
+  box-shadow: 0 0 90px 14px rgba(229,9,20,.45), inset -22px -30px 60px rgba(0,0,0,.65); animation: core-breathe 4s ease-in-out infinite; }
+@keyframes core-breathe { 50% { box-shadow: 0 0 130px 26px rgba(229,9,20,.6), inset -22px -30px 60px rgba(0,0,0,.65); scale: 1.04; } }
+.orb { position: absolute; left: 70px; top: 70px; width: 240px; height: 240px; transform-style: preserve-3d; animation: orb-spin 26s linear infinite; }
+@keyframes orb-spin { from { transform: rotateX(-16deg) rotateY(0deg); } to { transform: rotateX(-16deg) rotateY(360deg); } }
+.orb-m, .orb-l { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,110,118,.42); }
+.orb-m { transform: rotateY(calc(var(--i) * 22.5deg)); }
+.orb-l { transform: rotateX(90deg) translateZ(calc(var(--t) * 120px)) scale(var(--k)); border-color: rgba(255,255,255,.16); }
+.orb-orbit { position: absolute; left: 20px; top: 20px; width: 340px; height: 340px; border-radius: 50%; border: 1px solid rgba(255,255,255,.16); transform-style: preserve-3d; animation: orbit-a 14s linear infinite; }
+.orb-orbit-2 { left: 40px; top: 40px; width: 300px; height: 300px; border: 1px dashed rgba(229,9,20,.45); animation: orbit-b 20s linear infinite; }
+@keyframes orbit-a { from { transform: rotateX(74deg) rotateY(12deg) rotateZ(0deg); } to { transform: rotateX(74deg) rotateY(12deg) rotateZ(360deg); } }
+@keyframes orbit-b { from { transform: rotateX(62deg) rotateY(-34deg) rotateZ(360deg); } to { transform: rotateX(62deg) rotateY(-34deg) rotateZ(0deg); } }
+.orb-sat { position: absolute; top: -6px; left: calc(50% - 6px); width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,.7), 0 0 30px 8px rgba(229,9,20,.6); }
+.orb-orbit-2 .orb-sat { background: var(--red-bright); width: 9px; height: 9px; }
+.orb-floor { position: absolute; left: 22%; right: 22%; bottom: -4%; height: 36px; border-radius: 50%; background: radial-gradient(closest-side, rgba(229,9,20,.55), transparent); filter: blur(10px); animation: core-breathe-floor 4s ease-in-out infinite; }
+@keyframes core-breathe-floor { 50% { opacity: .6; scale: 1.15 1; } }

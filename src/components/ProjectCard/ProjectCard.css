@@ -1,0 +1,79 @@
+.pcard { position: relative; flex: none; width: var(--card-w); scroll-snap-align: start; z-index: 1; transition: transform var(--dur) var(--ease), z-index 0s .3s; --push: 0px; }
+.pcard--poster { width: calc(var(--poster-w) * 1.5); display: flex; align-items: flex-end; }
+.pcard--browser { width: calc(var(--card-w) * .92); }
+
+.pcard-inner { position: relative; width: 100%; transform-origin: center bottom; transition: transform var(--dur) var(--ease), box-shadow var(--dur); border-radius: var(--r-md); }
+.pcard--poster .pcard-inner { width: var(--poster-w); margin-left: auto; flex: none; }
+.pcard-media { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r-md); overflow: hidden; box-shadow: var(--shadow-card); outline: 1px solid var(--line); outline-offset: -1px; background: var(--surface); isolation: isolate; }
+.pcard--poster .pcard-media { aspect-ratio: 2 / 3; }
+.pcard--browser .pcard-media { aspect-ratio: 16 / 10; }
+.pcard-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(7,7,10,.92) 0%, rgba(7,7,10,.35) 38%, transparent 62%); z-index: 1; pointer-events: none; }
+
+.pcard--browser .pcard-shade { background: linear-gradient(to top, rgba(7,7,10,.97) 0%, rgba(7,7,10,.8) 40%, rgba(7,7,10,.1) 70%); }
+.pcard-open { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; cursor: pointer; border-radius: inherit; }
+.pcard-open:focus-visible { outline: 3px solid var(--text); outline-offset: -3px; }
+
+.pcard-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px; z-index: 2; pointer-events: none; }
+.pcard-genre { font-family: var(--font-mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--text-soft); }
+.pcard-title { font-size: clamp(1.35rem, 1.6vw, 1.85rem); line-height: .98; margin-top: 4px; text-shadow: 0 2px 12px #000a; }
+.pcard--poster .pcard-title { font-size: clamp(1.6rem, 2vw, 2.3rem); }
+.pcard--browser .pcard-title { font-size: clamp(1.1rem, 1.3vw, 1.5rem); }
+.pcard-stack { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.pcard-stack li { font-family: var(--font-mono); font-size: .62rem; padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,.12); color: var(--text); }
+
+/* rank numeral (poster) */
+.pcard-num {
+  font-family: var(--font-display); line-height: .8; user-select: none; pointer-events: none;
+  font-size: calc(var(--poster-w) * 1.2); margin-right: -14px; margin-bottom: -4px; position: relative; z-index: 0;
+  color: #07070a; -webkit-text-stroke: 3px rgba(255,255,255,.55); letter-spacing: -.02em;
+  transition: -webkit-text-stroke-color var(--dur), color var(--dur);
+}
+.pcard--poster:hover .pcard-num { -webkit-text-stroke-color: var(--red-bright); }
+.pcard--poster .pcard-inner { z-index: 1; }
+
+/* blueprint */
+.pcard--blueprint .pcard-media { outline-color: rgba(91,134,255,.45); }
+.pcard-bp { position: absolute; inset: 8px; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(var(--blue), var(--blue)) top left / 14px 1.5px no-repeat, linear-gradient(var(--blue), var(--blue)) top left / 1.5px 14px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) top right / 14px 1.5px no-repeat, linear-gradient(var(--blue), var(--blue)) top right / 1.5px 14px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) bottom left / 14px 1.5px no-repeat, linear-gradient(var(--blue), var(--blue)) bottom left / 1.5px 14px no-repeat,
+    linear-gradient(var(--blue), var(--blue)) bottom right / 14px 1.5px no-repeat, linear-gradient(var(--blue), var(--blue)) bottom right / 1.5px 14px no-repeat; opacity: .8; }
+.pcard--blueprint .pcard-genre { color: var(--blue); }
+
+/* hover panel (desktop only; touch users tap through to the details dialog) */
+.pcard-panel {
+  position: absolute; left: 0; right: 0; top: calc(100% - 4px); z-index: 4;
+  padding: 14px 16px 16px; border-radius: 0 0 var(--r-md) var(--r-md);
+  background: var(--surface-2); box-shadow: 0 30px 50px -10px #000;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s var(--dur);
+}
+.pcard-actions { display: flex; align-items: center; gap: 8px; }
+.pcard-actions .icon-btn { width: 36px; height: 36px; }
+.pcard-actions .icon-btn svg { width: 16px; height: 16px; }
+.pcard-info { margin-left: auto; }
+.pcard-play { width: 38px; height: 38px; border-radius: 50%; background: var(--text); color: #000; display: grid; place-items: center; transition: transform var(--dur-fast), background var(--dur-fast); }
+.pcard-play:hover { transform: scale(1.1); background: #fff; }
+.pcard-play svg { width: 16px; height: 16px; margin-left: 2px; fill: currentColor; }
+.pcard-meta { display: flex; gap: 10px; align-items: center; margin-top: 12px; font-size: .74rem; color: var(--muted); }
+.pcard-meta b { color: var(--green); font-weight: 600; }
+.pcard-desc { margin-top: 8px; font-size: .82rem; color: var(--text-soft); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pcard-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.pcard-chips .chip { font-size: .66rem; padding: 2px 8px; }
+.pcard--poster .pcard-panel { left: auto; width: var(--poster-w); }
+
+@media (hover: hover) and (pointer: fine) {
+  .pcard:hover, .pcard:focus-within { z-index: 20; transition: transform var(--dur) var(--ease), z-index 0s; }
+  .pcard:hover .pcard-inner, .pcard:focus-within .pcard-inner { transform: scale(1.12); }
+  .pcard--poster:hover .pcard-inner, .pcard--poster:focus-within .pcard-inner { transform: scale(1.08); }
+  .pcard:hover .pcard-media, .pcard:focus-within .pcard-media { border-radius: var(--r-md) var(--r-md) 0 0; box-shadow: 0 0 0 1px var(--line-strong); }
+  .pcard:hover .pcard-panel, .pcard:focus-within .pcard-panel { opacity: 1; visibility: visible; transform: none; transition-delay: .06s, .06s, 0s; }
+  /* make room: neighbours slide out of the way instead of being covered unpredictably */
+  .pcard:hover ~ .pcard { transform: translateX(var(--push-amt, 28px)); }
+  .pcard:has(~ .pcard:hover) { transform: translateX(calc(var(--push-amt, 28px) * -1)); }
+}
+@media (hover: none), (pointer: coarse) {
+  .pcard-panel { display: none; }
+  .pcard-title { font-size: 1.3rem; }
+}

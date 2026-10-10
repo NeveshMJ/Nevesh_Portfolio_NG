@@ -1,0 +1,70 @@
+.hero { position: relative; min-height: clamp(600px, 94svh, 920px); display: flex; align-items: flex-end; padding-top: calc(var(--nav-h) + 24px); padding-bottom: clamp(64px, 9vw, 120px); overflow: hidden; isolation: isolate; }
+/* cinematic backdrop: drifting red light, a sweeping beam, rings and a receding grid floor */
+.hero-art { position: absolute; inset: 0; z-index: -3; overflow: hidden; transform: translate3d(0, var(--py, 0), 0); will-change: transform; animation: hero-in 1.6s var(--ease) both; }
+@keyframes hero-in { from { opacity: 0; transform: translate3d(0, 0, 0) scale(1.08); } to { opacity: 1; transform: translate3d(0, var(--py, 0), 0) scale(1); } }
+.hb-blob { position: absolute; border-radius: 50%; filter: blur(90px); mix-blend-mode: screen; }
+.hb-blob-1 { width: 46vw; height: 46vw; right: -8vw; top: -10vw; background: radial-gradient(circle, rgba(229,9,20,.55), transparent 65%); animation: hb-drift 18s ease-in-out infinite alternate; }
+.hb-blob-2 { width: 34vw; height: 34vw; right: 18vw; top: 20%; background: radial-gradient(circle, rgba(131,16,16,.6), transparent 65%); animation: hb-drift 22s ease-in-out -6s infinite alternate-reverse; }
+.hb-blob-3 { width: 26vw; height: 26vw; right: 4vw; bottom: 4%; background: radial-gradient(circle, rgba(143,107,255,.22), transparent 65%); animation: hb-drift 26s ease-in-out -12s infinite alternate; }
+@keyframes hb-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(-6vw, 4vw) scale(1.15); } }
+.hb-beam { position: absolute; top: -20%; right: 22%; width: 18vw; height: 140%; background: linear-gradient(to bottom, rgba(255,255,255,.10), rgba(229,9,20,.08) 45%, transparent 80%); transform: rotate(24deg); filter: blur(24px); transform-origin: top center; animation: hb-sweep 12s ease-in-out infinite alternate; }
+@keyframes hb-sweep { from { transform: rotate(18deg); opacity: .55; } to { transform: rotate(32deg); opacity: 1; } }
+.hb-floor { position: absolute; left: 20%; right: -20%; bottom: -10%; height: 55%; transform: perspective(520px) rotateX(64deg); transform-origin: bottom center;
+  background-image: linear-gradient(rgba(229,9,20,.35) 1px, transparent 1px), linear-gradient(90deg, rgba(229,9,20,.35) 1px, transparent 1px); background-size: 56px 56px; animation: hb-floor 6s linear infinite;
+  -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 85%); mask-image: linear-gradient(to top, #000 10%, transparent 85%); opacity: .55; }
+@keyframes hb-floor { to { background-position: 0 56px, 0 0; } }
+.hero-vignette { position: absolute; inset: 0; z-index: -2; background:
+  linear-gradient(90deg, var(--bg) 6%, rgba(7,7,10,.84) 38%, rgba(7,7,10,.25) 72%, rgba(7,7,10,.55) 100%),
+  linear-gradient(to top, var(--bg) 2%, rgba(7,7,10,0) 38%),
+  linear-gradient(to bottom, rgba(7,7,10,.7), transparent 22%); }
+.hero-particles { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.hero-particles i { position: absolute; bottom: -10px; border-radius: 50%; background: #ff8a8f; box-shadow: 0 0 10px 2px rgba(229, 9, 20,.6); opacity: 0; animation: drift linear infinite; }
+
+.hero-inner { width: 100%; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 380px); gap: clamp(24px, 5vw, 80px); align-items: end; }
+.hero-copy { position: relative; z-index: 1; display: grid; justify-items: start; gap: 18px; max-width: 760px; animation: fade-up 900ms .15s var(--ease) both; }
+.hero-kicker { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--text-soft); }
+.hero-badge { width: 22px; height: 22px; display: grid; place-items: center; border-radius: 5px; background: var(--red); color: #fff; font-family: var(--font-display); font-size: 1rem; letter-spacing: 0; padding-top: 2px; }
+.hero-name { font-family: var(--font-body); font-weight: 800; font-size: calc(var(--fs-hero) * .72); line-height: 1; display: grid; white-space: nowrap; letter-spacing: -.035em; text-shadow: 0 6px 50px rgba(0,0,0,.6); }
+/* second line: solid white→Netflix-red gradient fill (an outline shows Inter's overlapping glyph seams) */
+.hero-name-2 { padding-bottom: .06em; letter-spacing: -.03em; text-shadow: none;
+  background: linear-gradient(92deg, #f4f1ec 0%, #ffb3b6 28%, #e50914 62%, #b20710 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 10px 34px rgba(229,9,20,.35)); }
+.hero-role { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: clamp(1rem, 1.5vw, 1.25rem); font-weight: 600; color: var(--text); letter-spacing: .01em; }
+.hero-role i { width: 6px; height: 6px; border-radius: 50%; background: var(--red-bright); display: inline-block; box-shadow: 0 0 10px 2px rgba(229,9,20,.6); }
+.hero-role-accent { color: var(--red-bright); }
+.hero-summary { color: var(--text-soft); max-width: 58ch; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.7; padding-left: 16px; border-left: 2px solid rgba(229,9,20,.7); text-shadow: 0 2px 14px #000; }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px; }
+.hero-cta .btn-light { box-shadow: 0 10px 30px -8px rgba(255,255,255,.25); }
+.hero-cta .icon-btn { transition: border-color var(--dur-fast), color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast); }
+.hero-cta .icon-btn:hover { border-color: var(--red-bright); color: #fff; transform: translateY(-2px); box-shadow: 0 0 18px -2px rgba(229,9,20,.55); }
+.hero-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding-top: 18px; max-width: 700px; border-top: 1px solid var(--line); }
+.hero-tech li { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px 6px 10px; border-radius: 999px; font-size: .76rem; font-weight: 500; color: var(--text-soft);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.025)); border: 1px solid rgba(255,255,255,.1); backdrop-filter: blur(6px);
+  transition: border-color var(--dur-fast), background var(--dur-fast), color var(--dur-fast), transform var(--dur-fast); }
+.hero-tech li:hover { color: #fff; border-color: rgba(229,9,20,.65); background: rgba(229,9,20,.14); transform: translateY(-2px); }
+.hero-tech svg { width: 14px; height: 14px; color: var(--text); opacity: .9; }
+
+/* hero placement of the shared 3D orb (see Orb.css) */
+.hero-3d { position: relative; width: 380px; height: 380px; justify-self: center; align-self: center; left: -140px; perspective: 1000px; animation: fade-up 1s .4s var(--ease) both; }
+
+.hero-scroll { position: absolute; left: 50%; bottom: 20px; translate: -50% 0; width: 26px; height: 42px; border-radius: 14px; border: 2px solid rgba(255,255,255,.35); display: grid; justify-items: center; padding-top: 8px; }
+.hero-scroll span { width: 3px; height: 8px; border-radius: 2px; background: #fff; animation: scroll-dot 1.8s var(--ease-in-out) infinite; }
+@keyframes scroll-dot { 0% { opacity: 0; transform: translateY(0); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(14px); } }
+
+@media (max-width: 980px) {
+  .hero { min-height: 0; padding-bottom: 72px; }
+  .hb-blob-1 { width: 90vw; height: 90vw; } .orb-halo { width: 420px; height: 420px; margin: -210px 0 0 -210px; } .orb-halo-2 { display: none; }.hb-floor { left: -10%; }
+  .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-copy { min-width: 0; }
+  .hero-3d { justify-self: center; left: 0; }
+  .hero-vignette { background: linear-gradient(to top, var(--bg) 4%, rgba(7,7,10,.8) 45%, rgba(7,7,10,.5) 100%), linear-gradient(to bottom, rgba(7,7,10,.7), transparent 22%); }
+  .hero-scroll { display: none; }
+}
+@media (max-width: 560px) {
+  .hero-name { font-size: clamp(2.8rem, 13.5vw, 5rem); }
+  .hero-cta .btn { flex: 1 1 calc(50% - 6px); padding-inline: 14px; }
+  .hero-tech li:nth-child(n+8) { display: none; }
+  .hero-role i { display: none; }
+  .hero-3d { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-particles { display: none; } .hero-scroll span, .hero-art *, .hero-3d * { animation: none; } }
